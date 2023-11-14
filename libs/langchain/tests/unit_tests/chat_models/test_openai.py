@@ -159,4 +159,3 @@ def test_api_key_masked_when_passed_via_constructor(
     captured = capsys.readouterr()
 
     assert captured.out == "**********"
- 
