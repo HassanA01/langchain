@@ -126,6 +126,8 @@ async def test_openai_apredict(mock_completion: dict) -> None:
 
 
 """Test Openai chat model"""
+
+
 @pytest.mark.requires("openai")
 def test_api_key_is_secret_string() -> None:
     llm = ChatOpenAI(

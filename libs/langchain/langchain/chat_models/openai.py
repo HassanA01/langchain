@@ -271,9 +271,7 @@ class ChatOpenAI(BaseChatModel):
             raise ValueError("n must be 1 when streaming.")
 
         values["openai_api_key"] = convert_to_secret_str(
-            get_from_dict_or_env(
-                values, "openai_api_key", "OPENAI_API_KEY"
-            )
+            get_from_dict_or_env(values, "openai_api_key", "OPENAI_API_KEY")
         )
         # Check OPENAI_ORGANIZATION for backwards compatibility.
         values["openai_organization"] = (
