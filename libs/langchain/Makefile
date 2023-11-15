@@ -28,7 +28,7 @@ test_watch:
 	poetry run ptw --now . -- tests/unit_tests
 
 integration_tests:
-	poetry run pytest tests/integration_tests
+	poetry run pytest tests/integration_tests/
 
 scheduled_tests:
 	poetry run pytest -m scheduled tests/integration_tests
