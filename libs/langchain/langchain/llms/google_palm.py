@@ -13,12 +13,11 @@ from tenacity import (
 
 from langchain.callbacks.manager import CallbackManagerForLLMRun
 from langchain.llms import BaseLLM
-from langchain.pydantic_v1 import BaseModel, root_validator, SecretStr
+from langchain.pydantic_v1 import BaseModel, SecretStr, root_validator
 from langchain.schema import Generation, LLMResult
 from langchain.utils import (
     convert_to_secret_str,
     get_from_dict_or_env,
-    get_pydantic_field_names,
 )
 
 logger = logging.getLogger(__name__)
@@ -110,14 +109,13 @@ class GooglePalm(BaseLLM, BaseModel):
     @root_validator()
     def validate_environment(cls, values: Dict) -> Dict:
         """Validate api key, python package exists."""
-        google_api_key =  convert_to_secret_str(
-            get_from_dict_or_env(
-            values, "google_api_key", "GOOGLE_API_KEY")
+        google_api_key = convert_to_secret_str(
+            get_from_dict_or_env(values, "google_api_key", "GOOGLE_API_KEY")
         )
         try:
             import google.generativeai as genai
 
-            genai.configure(api_key= values["google_api_key"].get_secret_value())
+            genai.configure(api_key=google_api_key.get_secret_value())
         except ImportError:
             raise ImportError(
                 "Could not import google-generativeai python package. "
