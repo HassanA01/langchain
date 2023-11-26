@@ -4,10 +4,8 @@ Note: This test must be run with the GOOGLE_API_KEY environment variable set to 
       valid API key.
 """
 
-import os
 from pathlib import Path
 
-import pytest
 from pytest import CaptureFixture, MonkeyPatch
 
 from langchain.llms.google_palm import GooglePalm
