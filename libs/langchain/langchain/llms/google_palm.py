@@ -79,7 +79,7 @@ class GooglePalm(BaseLLM, BaseModel):
     """Google PaLM models."""
 
     client: Any  #: :meta private:
-    google_api_key: Optional[SecretStr]
+    google_api_key: Optional[str]
     model_name: str = "models/text-bison-001"
     """Model name to use."""
     temperature: float = 0.7
